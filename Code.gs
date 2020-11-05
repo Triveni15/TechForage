@@ -11,8 +11,6 @@ function doPost(e)
     var chances = verifyLogin(e); 
     sendJSON = {Left:chances};
   }
-  
-  //Logger.log(test);
   return ContentService.createTextOutput(JSON.stringify(sendJSON)).setMimeType(ContentService.MimeType.JSON);
 }
 
