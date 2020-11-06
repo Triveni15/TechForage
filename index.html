@@ -20,11 +20,17 @@
         <h1>LOGIN</h1>
         <form method="post" id="login">
             <br>
+            <p>Name:</p>
+            <input type="Text" required id="Text" name="text" placeholder="Enter name">
+            <br>
             <p>Email ID:</p>
-            <input type="text" required id="email" name="email" placeholder="Enter Email Id">
+            <input type="email" required id="email" name="email" placeholder="Enter Email Id">
             <br>
             <p>Passcode:</p>
             <input type="password" required id="otp" name="otp" placeholder="Enter Passcode">
+            <br>
+            <br>
+            <p class="instructions">*You Have 3 Attempts To Login</p>
             <br>
             <br>
             <input type="submit" name="submit" value="Login">
