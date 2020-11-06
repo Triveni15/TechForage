@@ -44,6 +44,12 @@ h1{
 
 }
 
+.instructions{
+	font-size: 13px;
+	font-family: 'Times New Roman', Times, serif;
+	color: whitesmoke;
+	height: 600px;
+}
 .login-box p{
 	margin: 0;
 	padding: 0;
