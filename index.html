@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <title>Login</title>
 </head>
@@ -20,9 +21,6 @@
         <h1>LOGIN</h1>
         <form method="post" id="login">
             <br>
-            <p>Name:</p>
-            <input type="Text" required id="Text" name="text" placeholder="Enter name">
-            <br>
             <p>Email ID:</p>
             <input type="email" required id="email" name="email" placeholder="Enter Email Id">
             <br>
@@ -30,13 +28,12 @@
             <input type="password" required id="otp" name="otp" placeholder="Enter Passcode">
             <br>
             <br>
-            <p class="instructions">*You Have 3 Attempts To Login</p>
+            <p class="instructions" id="status"></p>
             <br>
             <br>
             <input type="submit" name="submit" value="Login">
             <br>
         </form>
-
     </div>
 
     <script>
@@ -64,18 +61,13 @@
                 data: serialJSON,
 
                 success: function (res) {
-                    if (res.Left <= 0) {
-                        alert('No more attempts left to login!.');
-                    }
-                    else if (res.Left === 'Verified') {
-                        alert('You have logged in');
+                    if (res.Left === 'Verified') {
+                        document.getElementById("status").innerHTML = "You have logged in";
                         ///////////LINK TO SECOND PAGE ////////MODE 2...//////////////////////////////////////////
                     }
-                    else if ('Not registered' === res.Left) {
-                        alert('you have not registered');
-                    }
                     else {
-                        alert('you have only ' + res.Left + ' attempts left.');
+                        document.getElementById("status").innerHTML = "Wrong credentials";
+
                     }
                 },
                 error: function (res) {

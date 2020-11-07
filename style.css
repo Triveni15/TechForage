@@ -61,7 +61,7 @@ h1{
 	margin-bottom: 20px; 
 }
 
-.login-box input[type="text"],input[type="password"]
+.login-box input[type="text"],input[type="password"],input[type="email"]
 {
 	border: none;
 	border-bottom: 1px solid #fff;
