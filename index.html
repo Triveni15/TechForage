@@ -31,16 +31,13 @@
             <p class="instructions" id="status"></p>
             <br>
             <br>
-            <input type="submit" name="submit" value="Login">
+            <input type="submit" id="submit" name="submit" value="Login">
             <br>
+
         </form>
     </div>
 
     <script>
-
-        var serialJSON = {};
-        var mode;
-
         document.getElementById('login').onsubmit = function () {
             mode = 1;
             serialJSON['email'] = document.getElementById('email').value;
@@ -48,35 +45,10 @@
             successful(mode, serialJSON);
             return false;
         };
-
-        function successful(mode) {
-
-            serialJSON['mode'] = mode;
-
-            console.log(serialJSON);
-
-            $.ajax({
-                url: "https://script.google.com/macros/s/AKfycbx9uLamD9tPy09i7rIvqcafj5rLdUmV4l_7c_HSOREe7zR204-k/exec",
-                type: 'POST',
-                data: serialJSON,
-
-                success: function (res) {
-                    if (res.Left === 'Verified') {
-                        document.getElementById("status").innerHTML = "You have logged in";
-                        ///////////LINK TO SECOND PAGE ////////MODE 2...//////////////////////////////////////////
-                    }
-                    else {
-                        document.getElementById("status").innerHTML = "Wrong credentials";
-
-                    }
-                },
-                error: function (res) {
-                    console.log('error');
-                }
-            });
-        }
-
     </script>
+
+    <script src='main.js'></script>
+
 </body>
 
 </html>

@@ -1,11 +1,10 @@
 body{
 	margin: 0;
 	padding: 0;
-	background: url(../Images/bg_pic.jpg);
+	background: url(First.jpg);
 	background-size:cover;
 	height: 100vh;
 }
-
 
 .question_pic{
   display: block;
