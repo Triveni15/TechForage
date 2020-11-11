@@ -1,10 +1,9 @@
 let serialJSON = {};
-let mode;
+let mode, right = 0;
 
 function successful(mode) {
 
     serialJSON['mode'] = mode;
-
     console.log(serialJSON);
 
     $.ajax({
@@ -13,18 +12,32 @@ function successful(mode) {
         data: serialJSON,
 
         success: function (res) {
-            if (res.Returned === 'Verified') {
-                //document.getElementById('status').innerHTML = "You have logged in";
+            if ('Verified' === res.Returned) {
                 window.location.replace('page_2.html');
+                //window.location.href = "page_2.html";
             }
-            else if (res.Returned === 'Wrong credentials') {
+            else if ('Wrong credentials' === res.Returned) {
                 document.getElementById("status").innerHTML = "Wrong credentials";
             }
-            else if (res.Returned === 'wrong') {
-                console.log('wrong answer');
+            else if (res.Returned == 'F') {
+                // alert('Sorry, you have used all your attempts.');
+                window.location.replace('fail.html');
+                //window.location.href = "fail.html";
+            }
+            else if (res.Returned == 'T') {
+                right++;
+                if (right >= 2) {
+                    window.location.replace('cleared.html');
+                    //window.location.href = "cleared.html";
+                }
+                console.log('correct answer');
+            }
+            else if (res.Returned == 'E') {
+                window.location.replace('index.html');
+                console.log(res.Returned);
             }
             else {
-                console.log('correct answer');
+                document.getElementById('attemptStatus').innerHTML = ` Number of attempts left ${res.Returned}.`;
             }
         },
         error: function (res) {

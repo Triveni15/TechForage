@@ -3,7 +3,6 @@
 
 <head>
 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -21,85 +20,125 @@
 
 <body>
 
-    <div class="container">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">HELLO</h1>
-                <p class="lead">We Hope You Enjoy The Game. </p>
-            </div>
+    <div class="overlay-box">
+        <div class="container">
+            <h1>HELLO!!</h1>
+            <p>We Hope You Enjoy The Game. </p>
+        </div>
+        <hr>
+        <img src="dummy.png" alt="Question" class="question_pic">
+        <br>
+        <br>
+        <div class="radio-container" id="radiobtn" required>
+            <input type="radio" id="myRadiobtn0" name="radiobtn" />
+            <label for="myRadiobtn0">Option 0</label>
+
+            <input type="radio" id="myRadiobtn1" name="radiobtn" />
+            <label for="myRadiobtn1">Option 1</label>
+
+            <input type="radio" id="myRadiobtn2" name="radiobtn" />
+            <label for="myRadiobtn2">Option 2</label>
+
+            <input type="radio" id="myRadiobtn3" name="radiobtn" />
+            <label for="myRadiobtn3">Option 3</label>
+
+            <input type="radio" id="myRadiobtn4" name="radiobtn" />
+            <label for="myRadiobtn4">Option 4</label>
+
+            <input type="radio" id="myRadiobtn5" name="radiobtn" />
+            <label for="myRadiobtn5">Option 5</label>
+
+            <input type="radio" id="myRadiobtn6" name="radiobtn" />
+            <label for="myRadiobtn6">Option 6</label>
+
+            <input type="radio" id="myRadiobtn7" name="radiobtn" />
+            <label for="myRadiobtn7">Option 7</label>
+
+            <input type="radio" id="myRadiobtn8" name="radiobtn" />
+            <label for="myRadiobtn8">Option 8</label>
+
+            <input type="radio" id="myRadiobtn9" name="radiobtn" />
+            <label for="myRadiobtn9">Option 9</label>
             <br>
-            <hr>
-            <img src="dummy.png" alt="Question" class="question_pic">
+            <button id="selectedRadio" type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#Modal">submit</button>
             <br>
-            <br>
-            <div class="radio-container">
-                <input type="radio" id="myRadiobtn0" name="radiobtn" />
-                <label for="myRadiobtn0">Option 0</label>
-
-                <input type="radio" id="myRadiobtn1" name="radiobtn" />
-                <label for="myRadiobtn1">Option 1</label>
-
-                <input type="radio" id="myRadiobtn2" name="radiobtn" />
-                <label for="myRadiobtn2">Option 2</label>
-
-                <input type="radio" id="myRadiobtn3" name="radiobtn" />
-                <label for="myRadiobtn3">Option 3</label>
-
-                <input type="radio" id="myRadiobtn4" name="radiobtn" />
-                <label for="myRadiobtn4">Option 4</label>
-
-                <input type="radio" id="myRadiobtn5" name="radiobtn" />
-                <label for="myRadiobtn5">Option 5</label>
-
-                <input type="radio" id="myRadiobtn6" name="radiobtn" />
-                <label for="myRadiobtn6">Option 6</label>
-
-                <input type="radio" id="myRadiobtn7" name="radiobtn" />
-                <label for="myRadiobtn7">Option 7</label>
-
-                <input type="radio" id="myRadiobtn8" name="radiobtn" />
-                <label for="myRadiobtn8">Option 8</label>
-
-                <input type="radio" id="myRadiobtn9" name="radiobtn" />
-                <label for="myRadiobtn9">Option 9</label>
-                <br>
-                <button id="selectedRadio">submit</button>
-                <br>
-            </div>
 
         </div>
     </div>
+
+    <div>
+        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="pic0.jpeg" class="modal_pic" id="modalImg">
+                        <br>
+                        <P>Answer:</P>
+                        <input type="text" required id="modalInput" name="answer" placeholder="your answer">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modalAns">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const btn = document.querySelector('#selectedRadio').onclick = function () {
+        var n;
+
+        document.querySelector('#selectedRadio').onclick = function () {
             const srbt = document.getElementsByName('radiobtn');
             //console.log(srbt);
             mode = 2;
             for (i = 0; i < 10; i++) {
                 if (srbt[i].checked) {
-                    //CHANGE CORRECT ANS RADIO button 
+                    //CHANGE CORRECT ANS OF RADIO button 
                     if (i == 3) {
                         serialJSON['answered'] = 'T';
+                        srbt[i].checked = false;
                     }
                     else {
                         serialJSON['answered'] = 'F';
+                        srbt[i].checked = false;
                     }
-
+                    document.getElementById('modalImg').src = `pic${i}.jpeg`;
+                    n = i;
                 }
             }
+            serialJSON['finalOtp'] = sessionStorage.getItem('finalOtp');
             successful(mode, serialJSON);
             return false;
         };
-        /*
-        document.querySelector('#radiobtn').addEventListener('input',function () {
 
-        console.log(document.getElementById('radiobtn').value);
-        serial2JSON['answered'] = document.getElementById('radiobtn').value;
-        //serialJSON['otp'] = document.getElementById('otp').value;
-        // successful(mode, serialJSON);
-        return false;
-        });
+        document.getElementById('modalAns').onclick = function () {
+            mode = 2;
+            //CHANGE CORRECT ANS OF RADIO button 
+            if (n == 3) {
+                if (document.getElementById('modalInput').value == 'resistor') {
+                    serialJSON['answered'] = 'T';
+                }
+                else {
+                    serialJSON['answered'] = 'F';
+                }
+                serialJSON['finalOtp'] = localStorage.getItem('finalOtp');
+                successful(mode, serialJSON);
+            }
+            else {
+                location.reload();
+            }
+            document.getElementById('modalInput').innerHTML = " ";
+            console.log(serialJSON);
+            return false;
+        };
 
-        */
+
     </script>
     <script src='main.js'></script>
 

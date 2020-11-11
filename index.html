@@ -39,14 +39,18 @@
 
     <script>
         document.getElementById('login').onsubmit = function () {
+            document.getElementById("status").innerHTML = " ";
             mode = 1;
             serialJSON['email'] = document.getElementById('email').value;
-            serialJSON['otp'] = document.getElementById('otp').value;
+            var otp = document.getElementById('otp').value;
+            serialJSON['otp'] = otp;
+
+            sessionStorage.setItem("finalOtp", otp);
+
             successful(mode, serialJSON);
             return false;
         };
     </script>
-
     <script src='main.js'></script>
 
 </body>
