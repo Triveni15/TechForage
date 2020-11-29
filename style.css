@@ -46,8 +46,10 @@ h1{
 
 .instructions{
 	font-size: 13px;
-	font-family: 'Times New Roman', Times, serif;
+	font-family: Tahoma;
 	color: whitesmoke;
+	font-weight: lighter;
+	font-size: 15px;
 }
 .login-box p{
 	margin: 0;
